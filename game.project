@@ -1,6 +1,6 @@
 [bootstrap]
-main_collection = /main/main.collectionc
-render = /main/main.renderc
+main_collection = /stairs/stairs.collectionc
+render = /stairs/render/stairs.renderc
 
 [script]
 shared_state = 1
@@ -15,7 +15,7 @@ package = com.defold.example.basic3d
 
 [project]
 dependencies = 
-title = Basic3D
+title = Stairs
 
 [physics]
 type = 3D

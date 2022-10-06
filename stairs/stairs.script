@@ -1,0 +1,24 @@
+local STEP_X = 8
+local STEP_Y = 1
+local STEP_Z = 2
+
+local SPEED = 2
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_camera_projection")
+	msg.post("camera", "acquire_camera_focus")
+
+	local count = 12
+	for i=1,count do
+		-- create staircase step objects and position them according to the size of the steps
+		local pos = vmath.vector3(0, STEP_Y, -STEP_Z) * i
+		local scale = vmath.vector3(STEP_X, STEP_Y, STEP_Z)
+		local id = factory.create("#stepfactory", pos, nil, nil, scale)
+
+		-- move each step in the staircase from the current position to the next and the restart
+		-- this gives the impression of an endlessly moving staircase
+		local to = pos - vmath.vector3(0, STEP_Y, -STEP_Z)
+		go.animate(id, "position", go.PLAYBACK_LOOP_FORWARD, to, go.EASING_LINEAR, SPEED)
+	end
+end

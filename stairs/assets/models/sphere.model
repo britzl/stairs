@@ -1,6 +1,6 @@
-mesh: "/builtins/assets/meshes/cube.dae"
+mesh: "/builtins/assets/meshes/sphere.dae"
 material: "/builtins/materials/model.material"
-textures: "/assets/images/green.png"
+textures: "/assets/images/white_1px.png"
 skeleton: ""
 animations: ""
 default_animation: ""
