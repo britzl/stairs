@@ -1,0 +1,7 @@
+mesh: "/stairs/assets/mesh/cone.dae"
+material: "/builtins/materials/model.material"
+textures: "/stairs/assets/images/white_1px.png"
+skeleton: ""
+animations: ""
+default_animation: ""
+name: "unnamed"
