@@ -1,9 +1,16 @@
-local STEP_X = 8
-local STEP_Y = 1
-local STEP_Z = 2
+local DISPLAY_WIDTH = tonumber(sys.get_config("display.width"))
 
-local STEPS = 12
+-- size of a step
+local STEP_X = 7
+local STEP_Y = 0.7
+local STEP_Z = 3
 
+-- number of steps to spawn
+local STEPS = 14
+
+local SPEED = 2
+
+-- the direction vector used when arranging the steps on init and also moving on update()
 local DIRECTION = vmath.vector3(0, STEP_Y, -STEP_Z)
 
 local function set_random_spike_position(spike)
@@ -17,6 +24,17 @@ local function set_random_spike_position(spike)
 	go.set_position(spike_pos, spike)
 end
 
+local function enable_random_spikes(spikes)
+	-- disable all spikes
+	for i=1,#spikes do
+		msg.post(spikes[i], "disable")
+	end
+	-- enable up to 4 spikes
+	for i=1,4 do
+		msg.post(spikes[math.random(1, #spikes)], "enable")
+	end
+end
+
 function init(self)
 	-- "seed" the random number generator (used for randomized spike positions)
 	math.randomseed(os.time())
@@ -25,6 +43,11 @@ function init(self)
 	msg.post("@render:", "use_camera_projection")	-- tell the render script to use the projection from the camera
 	msg.post("camera", "acquire_camera_focus")		-- activate the camera
 
+	-- get the ball, color it blue and bounce it
+	local ball = hash("/ball")
+	go.set(msg.url(nil, ball, "model"), "tint", vmath.vector4(0,0,1,1))
+	go.animate(ball, "position.y", go.PLAYBACK_LOOP_PINGPONG, 2, go.EASING_INQUAD, 1.0 / SPEED)
+	
 	-- steps are stored here for later use in update()
 	self.steps = {}
 
@@ -34,23 +57,32 @@ function init(self)
 		local pos = DIRECTION * i
 		local ids = collectionfactory.create("#stepfactory", pos)
 
-		-- get the created game objects
+		-- get root game object
+		-- this is the one we are moving in update()
 		local root = ids[hash("/root")]
-		local spike = ids[hash("/spike")]
-		local step = ids[hash("/step")]
 
-		-- save reference to the step so that we can move it in update
+		-- get the actual step
+		-- tint it green
+		local step = ids[hash("/step")]
+		go.set(msg.url(nil, step, "model"), "tint", vmath.vector4(0.3,1,0.2,1))
+
+		-- get all spikes
+		-- tint them red
+		local spikes = {}
+		for i=1,8 do
+			local spike = ids[hash("/spike"..i)]
+			go.set(msg.url(nil, spike, "model"), "tint", vmath.vector4(0.9,0.2,0,1))
+			spikes[i] = spike
+		end
+		
+		-- save game object references for access in update()
 		self.steps[i] = {
 			root = root,
-			spike = spike
+			spikes = spikes
 		}
 
 		-- initial random spike position
-		set_random_spike_position(spike)
-
-		-- tint the models
-		go.set(msg.url(nil, spike, "model"), "tint", vmath.vector4(2,0,0,1))
-		go.set(msg.url(nil, step, "model"), "tint", vmath.vector4(0,2,0,1))
+		enable_random_spikes(spikes)
 	end
 end
 
@@ -59,14 +91,29 @@ function update(self, dt)
 	-- move each step and reset position to above top of screen if outside of view
 	for i,step in ipairs(self.steps) do
 		local pos = go.get_position(step.root)
-		pos = pos - DIRECTION * dt
+		pos = pos - DIRECTION * SPEED * dt
 
 		-- reset position of step and set new random spike position?
-		if pos.y < 0 then
+		if pos.y < -1 then
 			pos = pos + DIRECTION * STEPS
-			set_random_spike_position(step.spike)
+			enable_random_spikes(step.spikes)
 		end
 
 		go.set_position(pos, step.root)
 	end
 end
+
+function on_input(self, action_id, action)
+	local pos = go.get_position("ball")
+	pos.x = (action.x - (DISPLAY_WIDTH * 0.5)) / 65
+	if pos.x > STEP_X * 0.5 then pos.x = STEP_X * 0.5 end
+	if pos.x < -STEP_X * 0.5 then pos.x = -STEP_X * 0.5 end
+	go.set_position(pos, "ball")
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+	end
+end
+
+

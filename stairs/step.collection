@@ -1,8 +1,175 @@
 name: "default"
+instances {
+  id: "spike1"
+  prototype: "/stairs/spike.go"
+  position {
+    x: -3.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike2"
+  prototype: "/stairs/spike.go"
+  position {
+    x: -2.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike3"
+  prototype: "/stairs/spike.go"
+  position {
+    x: -1.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike4"
+  prototype: "/stairs/spike.go"
+  position {
+    x: -0.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike5"
+  prototype: "/stairs/spike.go"
+  position {
+    x: 0.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike6"
+  prototype: "/stairs/spike.go"
+  position {
+    x: 1.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike7"
+  prototype: "/stairs/spike.go"
+  position {
+    x: 2.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
+instances {
+  id: "spike8"
+  prototype: "/stairs/spike.go"
+  position {
+    x: 3.5
+    y: 0.8
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.45
+    y: 0.45
+    z: 0.45
+  }
+}
 scale_along_z: 0
 embedded_instances {
   id: "root"
-  children: "spike"
+  children: "spike1"
+  children: "spike2"
+  children: "spike3"
+  children: "spike4"
+  children: "spike5"
+  children: "spike6"
+  children: "spike7"
+  children: "spike8"
   children: "step"
   data: ""
   position {
@@ -55,44 +222,7 @@ embedded_instances {
   }
   scale3 {
     x: 8.0
-    y: 1.0
-    z: 2.0
-  }
-}
-embedded_instances {
-  id: "spike"
-  data: "components {\n"
-  "  id: \"model\"\n"
-  "  component: \"/stairs/assets/models/cone.model\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "  property_decls {\n"
-  "  }\n"
-  "}\n"
-  ""
-  position {
-    x: 0.0
-    y: 1.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: -0.70710677
-    w: 0.70710677
-  }
-  scale3 {
-    x: 0.5
-    y: 0.5
-    z: 0.5
+    y: 0.7
+    z: 3.0
   }
 }
