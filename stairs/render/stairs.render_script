@@ -51,7 +51,7 @@ function update(self)
     render.enable_state(render.STATE_DEPTH_TEST)
     render.set_depth_mask(true)
     local constants = render.constant_buffer()
-    constants.light = vmath.vector4(1, 16, 25, 1)
+    constants.light = vmath.vector4(1, 100, 20, 1)
     render.draw(self.model_pred, { constants = constants})
 
     -- debug rendering
