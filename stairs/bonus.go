@@ -1,6 +1,6 @@
 components {
   id: "model"
-  component: "/stairs/assets/models/cone.model"
+  component: "/stairs/assets/models/dodecahedron.model"
   position {
     x: 0.0
     y: 0.0
@@ -9,8 +9,8 @@ components {
   rotation {
     x: 0.0
     y: 0.0
-    z: -0.70710677
-    w: 0.70710677
+    z: 0.0
+    w: 1.0
   }
 }
 embedded_components {
@@ -21,14 +21,14 @@ embedded_components {
   "mass: 0.0\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
-  "group: \"death\"\n"
+  "group: \"bonus\"\n"
   "mask: \"ball\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_SPHERE\n"
   "    position {\n"
   "      x: 0.0\n"
-  "      y: -0.4\n"
+  "      y: 0.0\n"
   "      z: 0.0\n"
   "    }\n"
   "    rotation {\n"
@@ -40,7 +40,7 @@ embedded_components {
   "    index: 0\n"
   "    count: 1\n"
   "  }\n"
-  "  data: 0.6\n"
+  "  data: 0.9\n"
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"

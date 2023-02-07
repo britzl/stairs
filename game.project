@@ -19,10 +19,14 @@ title = Stairs
 
 [physics]
 type = 3D
+max_collision_object_count = 256
 
 [osx]
 bundle_identifier = com.defold.example.basic3d
 
 [ios]
 bundle_identifier = com.defold.example.basic3d
+
+[model]
+max_count = 256
 
