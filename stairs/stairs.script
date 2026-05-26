@@ -1,4 +1,4 @@
-local DISPLAY_WIDTH = tonumber(sys.get_config("display.width"))
+local DISPLAY_WIDTH = sys.get_config_number("display.width")
 
 -- size of a step
 local STEP_X = 7
